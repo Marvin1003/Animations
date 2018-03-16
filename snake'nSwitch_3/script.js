@@ -3,32 +3,32 @@
   const imageSwitchThrottled = _.throttle(imageSwitch, 75);
   
   let i = -1;
-  let d = 20;
+  let d = 25;
   let pX = 0;
   let pY = 0;
-  
+
   window.onmousemove = imageMovement;
   
   const imageData = [
     {
       path: 'images/1.jpg',
-      width: 250,
-      height: 200
+      width: 350,
+      height: 500
     },
     {
       path: 'images/2.jpg',
-      width: 100,
-      height: 300
+      width: 400,
+      height: 600
     },
     {
       path: 'images/3.jpg',
-      width: 250,
-      height: 300
+      width: 375,
+      height: 660
     },
     {
       path: 'images/4.jpg',
-      width: 200,
-      height: 200
+      width: 400,
+      height: 500
     }
   ];
 
@@ -45,16 +45,24 @@
   }
 
   function imageSwitch(clientX, clientY) {
-    i = (i + 1) % images.length;
+    i = parseInt(Math.random() * images.length - 1);
     let currentIMG = images[i];
     let x = clientX - imageData[i].width / 2;
     let y = clientY - imageData[i].height / 2;
          
     // SET PROPER ZINDEX
-    [...images].forEach((image) => image === currentIMG ? image.style.zIndex = 1 : image.style.zIndex = 0);
+    [...images].forEach((image) => image === currentIMG ? image.style.zIndex = i : image.style.zIndex = 0);
 
     TweenMax.set(currentIMG, { x, y });
   }
+
+  // i = (i + 1) % images.length;
+  // let currentIMG = images[i];
+  // let x = clientX - imageData[i].width / 2;
+  // let y = clientY - imageData[i].height / 2;
+       
+  // // SET PROPER ZINDEX
+  // [...images].forEach((image) => image === currentIMG ? image.style.zIndex = 1 : image.style.zIndex = 0);
 
   function imageMovement( {clientX, clientY} ) {
     for(let i = 0; i < imageData.length; i++) {

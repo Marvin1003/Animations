@@ -3,8 +3,11 @@
   const imageSwitchThrottled = _.throttle(imageSwitch, 75);
   
   let i = -1;
-  let d = 25;
-  let p = 0;
+  let d = 20;
+  let pX = 0;
+  let pY = 0;
+  
+  window.onmousemove = imageMovement;
   
   const imageData = [
     {
@@ -63,13 +66,11 @@
 
       TweenMax.to(images[i], 0.1, { x, y, delay: i / 40, ease: Power1.easeOut});
     }
-    if((clientX + clientY) > (p + d) || (clientX + clientY) < (p - d)) {
-      p = clientX + clientY;
+    if(((clientX > (pX + d)) || clientX < (pX - d) || (clientY > (pY + d)) || clientY < (pY - d))) {
+      pX = clientX;
+      pY = clientY;
 
       imageSwitchThrottled(clientX, clientY);
     }
   }
-
-  window.onmousemove = imageMovement;
-  
 })()

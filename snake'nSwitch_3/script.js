@@ -52,7 +52,7 @@
     let x = clientX - imageData[i].width / 2;
     let y = clientY - imageData[i].height / 2;
     currentIMG.style.zIndex = zIndex++;
-    TweenMax.set(currentIMG, { x, y, force3D: true });
+    TweenMax.set(currentIMG, { x, y });
   }
 
   function imageMovement( {clientX, clientY} ) {
@@ -63,7 +63,7 @@
       const x = (clientX - (imageData[i].width/ 2));
       const y = (clientY - (imageData[i].height/ 2));
 
-      TweenMax.to(images[i], animationDuration, { x, y, delay: i / 40, ease: Power1.easeOut});
+      TweenMax.to(images[i], 0.1, { x, y, delay: i / 40, ease: Power1.easeOut});
     }
     if(((clientX > (pX + d)) || clientX < (pX - d) || (clientY > (pY + d)) || clientY < (pY - d))) {
       pX = clientX;

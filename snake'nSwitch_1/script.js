@@ -61,7 +61,7 @@
         let x = clientX - imageData[i].width / 2;
         let y = clientY - imageData[i].height / 2;
         currentIMG.style.zIndex = zIndex++;
-        TweenMax.set(currentIMG, { x, y, force3D: true });
+        TweenMax.set(currentIMG, { x, y });
       }
     }
   }

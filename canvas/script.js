@@ -5,7 +5,8 @@ const image = document.getElementById('source');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-
+ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
 // CONTENT PICS -> 25 - 5 
 if(window.Worker) {
@@ -30,14 +31,11 @@ if(window.Worker) {
     draw({filter});
    }
 
-   function draw({areaAmount = 1, strokeAmount = 1, filter = ""}) {
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
+   function draw({areaAmount = parseInt(areas.value) || 1, strokeAmount = parseInt(strokes.value) || 1, filter = select.value}) {
     const areaWidth = Math.ceil(canvas.width / areaAmount);
     const strokeWidth = Math.ceil(areaWidth / strokeAmount);
 
+    console.log(areaAmount, strokeAmount);
     webworker.postMessage([areaAmount, areaWidth, strokeAmount, strokeWidth, canvas.width, canvas.height, imgData, filter]);
    }
 

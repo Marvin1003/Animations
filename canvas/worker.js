@@ -14,7 +14,7 @@ function unsort({data}) {
 
   let currentArea = 0;
   let pixel;
-  
+
   const strokeArr = new Array(areaAmount);
   for(let i = 0; i < strokeArr.length; i++) {
     strokeArr[i] = new Array(strokeAmount);
@@ -70,7 +70,6 @@ function unsort({data}) {
     let random1 = randomStroke(sortedAreas);
     for(let i = 0; i < strokeAmount; i++) {
       let random = randomStroke(sortedStrokes);
-      console.log(strokeArr);
       var arr = new Uint8ClampedArray(strokeArr[j][i]);
       var newImageData = new ImageData(arr, strokeWidth, height);
       postMessage([newImageData, (random1 * areaWidth) + (strokeWidth * random)]);

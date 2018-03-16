@@ -35,7 +35,6 @@ if(window.Worker) {
     const areaWidth = Math.ceil(canvas.width / areaAmount);
     const strokeWidth = Math.ceil(areaWidth / strokeAmount);
 
-    console.log(areaAmount, strokeAmount);
     webworker.postMessage([areaAmount, areaWidth, strokeAmount, strokeWidth, canvas.width, canvas.height, imgData, filter]);
    }
 

@@ -3,32 +3,28 @@
   const imageSwitchThrottled = _.throttle(imageSwitch, 75);
   
   let i = -1;
-  let d = 15;
-  let pX = 0;
-  let pY = 0;
-  let zIndex = 0;
-  
-  window.onmousemove = imageMovement;
+  let d = 25;
+  let p = 0;
   
   const imageData = [
     {
       path: 'images/1.jpg',
-      width: 200,
-      height: 400
-    },
-    {
-      path: 'images/2.jpg',
-      width: 300,
+      width: 250,
       height: 200
     },
     {
+      path: 'images/2.jpg',
+      width: 100,
+      height: 300
+    },
+    {
       path: 'images/3.jpg',
-      width: 350,
-      height: 250
+      width: 250,
+      height: 300
     },
     {
       path: 'images/4.jpg',
-      width: 250,
+      width: 200,
       height: 200
     }
   ];
@@ -46,12 +42,14 @@
   }
 
   function imageSwitch(clientX, clientY) {
-    zIndex++;
     i = (i + 1) % images.length;
     let currentIMG = images[i];
     let x = clientX - imageData[i].width / 2;
     let y = clientY - imageData[i].height / 2;
-    currentIMG.style.zIndex = zIndex++;
+         
+    // SET PROPER ZINDEX
+    [...images].forEach((image) => image === currentIMG ? image.style.zIndex = 1 : image.style.zIndex = 0);
+
     TweenMax.set(currentIMG, { x, y });
   }
 
@@ -65,10 +63,13 @@
 
       TweenMax.to(images[i], 0.1, { x, y, delay: i / 40, ease: Power1.easeOut});
     }
-    if(((clientX > (pX + d)) || clientX < (pX - d) || (clientY > (pY + d)) || clientY < (pY - d))) {
-      pX = clientX;
-      pY = clientY;
+    if((clientX + clientY) > (p + d) || (clientX + clientY) < (p - d)) {
+      p = clientX + clientY;
+
       imageSwitchThrottled(clientX, clientY);
     }
   }
+
+  window.onmousemove = imageMovement;
+  
 })()

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+  <script type="text/javascript" src="script.js" async></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="options">
+    <select id="select">
+      <option value="">default</option>
+      <option value="grayscale">Grayscale</option>
+      <option value="grayscaleInverted">Grayscale Inverted</option>
+    </select>
+    <form>
+      <input min="1" type="number" id="areas">
+      <input min="1" type="number" id="strokes">
+    </form>
+  </div>
+  <canvas id="canvas"></canvas>
+  <img id="source" src="Bild.jpg">
+</body>
+</html>

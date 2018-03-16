@@ -45,25 +45,16 @@
   }
 
   function imageSwitch(clientX, clientY) {
-    i = parseInt(Math.random() * images.length);
-    
+    i = (i + 1) % images.length;
     let currentIMG = images[i];
     let x = clientX - imageData[i].width / 2;
     let y = clientY - imageData[i].height / 2;
-         
+        
     // SET PROPER ZINDEX
     [...images].forEach((image) => image === currentIMG ? image.style.zIndex = 1 : image.style.zIndex = 0);
 
     TweenMax.set(currentIMG, { x, y });
   }
-
-  // i = (i + 1) % images.length;
-  // let currentIMG = images[i];
-  // let x = clientX - imageData[i].width / 2;
-  // let y = clientY - imageData[i].height / 2;
-       
-  // // SET PROPER ZINDEX
-  // [...images].forEach((image) => image === currentIMG ? image.style.zIndex = 1 : image.style.zIndex = 0);
 
   function imageMovement( {clientX, clientY} ) {
     for(let i = 0; i < imageData.length; i++) {
